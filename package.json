@@ -1,6 +1,6 @@
 {
   "name": "runautomation-mcpserver",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Model Context Protocol servers for Playwright",
   "license": "MIT",
   "author": "Tayyab Akmal",
