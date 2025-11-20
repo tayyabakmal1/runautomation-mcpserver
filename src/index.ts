@@ -13,7 +13,7 @@ import { setupRequestHandlers } from "./requestHandler.js";
 async function runServer() {
   const server = new Server(
     {
-      name: "playwright-mcp",
+      name: "runautomation-mcpserver",
       version: "1.0.0",
     },
     {

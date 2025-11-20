@@ -2,7 +2,7 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@runautomation/playwright-mcp"]
+      "args": ["-y", "runautomation-mcpserver"]
     }
   }
 }
