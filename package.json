@@ -1,0 +1,67 @@
+{
+  "name": "@runautomation/playwright-mcp",
+  "version": "1.0.0",
+  "description": "Model Context Protocol servers for Playwright",
+  "license": "MIT",
+  "author": "Tayyab Akmal",
+  "homepage": "https://github.com/tayyabakmal1/runautomation-mcpserver",
+  "bugs": "https://github.com/tayyabakmal1/runautomation-mcpserver/issues",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "src/index.ts",
+  "type": "module",
+  "bin": {
+    "playwright-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && shx chmod +x dist/*.js",
+    "prepare": "npm run build",
+    "watch": "tsc --watch",
+    "test": "jest --testMatch=\"<rootDir>/src/__tests__/**/*.test.ts\"",
+    "test:coverage": "jest --coverage --testMatch=\"<rootDir>/src/__tests__/**/*.test.ts\"",
+    "test:custom": "node run-tests.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tayyabakmal1/runautomation-mcpserver.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.11.1",
+    "@playwright/browser-chromium": "1.56.1",
+    "@playwright/browser-firefox": "1.56.1",
+    "@playwright/browser-webkit": "1.56.1",
+    "@playwright/test": "^1.56.1",
+    "imap-simple": "^5.1.0",
+    "mailparser": "^3.9.0",
+    "mcp-evals": "^1.0.18",
+    "pdf-parse": "^1.1.1",
+    "pixelmatch": "^7.1.0",
+    "playwright": "1.56.1",
+    "pngjs": "^7.0.0",
+    "uuid": "11.1.0"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "AI",
+    "Claude MCP"
+  ],
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/mailparser": "^3.4.6",
+    "@types/node": "^20.10.5",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
+    "jest": "^29.7.0",
+    "jest-playwright-preset": "4.0.0",
+    "shx": "^0.3.4",
+    "ts-jest": "^29.2.6",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

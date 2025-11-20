@@ -1,0 +1,10 @@
+node_modules/
+.env
+*.log
+__pycache__/
+.DS_Store
+.mcp-index.json
+doc
+src/__tests__
+dist
+coverage
