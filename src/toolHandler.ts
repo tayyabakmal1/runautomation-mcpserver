@@ -93,6 +93,13 @@ import {
   AssertCssPropertyTool,
   AssertRequestMadeTool
 } from './tools/browser/assertions.js';
+import {
+  StartVideoRecordingTool,
+  StopVideoRecordingTool,
+  AddVideoAnnotationTool,
+  ConfigureVideoSettingsTool,
+  GetVideoStatusTool
+} from './tools/browser/videoRecording.js';
 
 // Global state (maintained for backward compatibility with default session)
 let browser: Browser | undefined;
@@ -194,6 +201,13 @@ let assertTextContentTool: AssertTextContentTool;
 let assertAttributeTool: AssertAttributeTool;
 let assertCssPropertyTool: AssertCssPropertyTool;
 let assertRequestMadeTool: AssertRequestMadeTool;
+
+// Video recording tools
+let startVideoRecordingTool: StartVideoRecordingTool;
+let stopVideoRecordingTool: StopVideoRecordingTool;
+let addVideoAnnotationTool: AddVideoAnnotationTool;
+let configureVideoSettingsTool: ConfigureVideoSettingsTool;
+let getVideoStatusTool: GetVideoStatusTool;
 
 interface BrowserSettings {
   viewport?: {
@@ -484,6 +498,13 @@ function initializeTools(server: any) {
   if (!assertAttributeTool) assertAttributeTool = new AssertAttributeTool(server);
   if (!assertCssPropertyTool) assertCssPropertyTool = new AssertCssPropertyTool(server);
   if (!assertRequestMadeTool) assertRequestMadeTool = new AssertRequestMadeTool(server);
+
+  // Initialize video recording tools
+  if (!startVideoRecordingTool) startVideoRecordingTool = new StartVideoRecordingTool(server);
+  if (!stopVideoRecordingTool) stopVideoRecordingTool = new StopVideoRecordingTool(server);
+  if (!addVideoAnnotationTool) addVideoAnnotationTool = new AddVideoAnnotationTool(server);
+  if (!configureVideoSettingsTool) configureVideoSettingsTool = new ConfigureVideoSettingsTool(server);
+  if (!getVideoStatusTool) getVideoStatusTool = new GetVideoStatusTool(server);
 }
 
 /**
@@ -766,6 +787,18 @@ export async function handleToolCall(
         return await assertCssPropertyTool.execute(args, context);
       case "playwright_assert_request_made":
         return await assertRequestMadeTool.execute(args, context);
+
+      // Video recording tools
+      case "playwright_start_video_recording":
+        return await startVideoRecordingTool.execute(args, context);
+      case "playwright_stop_video_recording":
+        return await stopVideoRecordingTool.execute(args, context);
+      case "playwright_add_video_annotation":
+        return await addVideoAnnotationTool.execute(args, context);
+      case "playwright_configure_video_settings":
+        return await configureVideoSettingsTool.execute(args, context);
+      case "playwright_get_video_status":
+        return await getVideoStatusTool.execute(args, context);
 
       default:
         return {

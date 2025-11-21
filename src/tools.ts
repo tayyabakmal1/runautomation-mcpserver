@@ -1560,6 +1560,112 @@ export function createToolDefinitions() {
         required: ["urlPattern"]
       }
     },
+    // Video Recording Tools
+    {
+      name: "playwright_start_video_recording",
+      description: "Start recording video of browser session. Useful for test debugging and documentation.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          outputPath: {
+            type: "string",
+            description: "Custom output path for video file (optional, auto-generated if not provided)"
+          },
+          size: {
+            type: "object",
+            description: "Video dimensions (default: 1280x720)",
+            properties: {
+              width: { type: "number" },
+              height: { type: "number" }
+            }
+          },
+          recordOnFailure: {
+            type: "boolean",
+            description: "Only save video if test fails (default: false)"
+          }
+        },
+        required: []
+      }
+    },
+    {
+      name: "playwright_stop_video_recording",
+      description: "Stop video recording and save the file with optional annotations",
+      inputSchema: {
+        type: "object",
+        properties: {
+          saveVideo: {
+            type: "boolean",
+            description: "Whether to save the video (default: true, false will discard)"
+          },
+          customPath: {
+            type: "string",
+            description: "Custom path to save the video (optional)"
+          }
+        },
+        required: []
+      }
+    },
+    {
+      name: "playwright_add_video_annotation",
+      description: "Add a timestamped annotation/marker to the current video recording",
+      inputSchema: {
+        type: "object",
+        properties: {
+          message: {
+            type: "string",
+            description: "Annotation message to mark this point in the recording"
+          },
+          timestamp: {
+            type: "number",
+            description: "Custom timestamp in milliseconds (optional, auto-calculated if not provided)"
+          }
+        },
+        required: ["message"]
+      }
+    },
+    {
+      name: "playwright_configure_video_settings",
+      description: "Configure default video recording settings (output directory, quality, FPS)",
+      inputSchema: {
+        type: "object",
+        properties: {
+          outputDir: {
+            type: "string",
+            description: "Default output directory for video files (default: './videos')"
+          },
+          size: {
+            type: "object",
+            description: "Default video dimensions",
+            properties: {
+              width: { type: "number" },
+              height: { type: "number" }
+            }
+          },
+          recordOnFailure: {
+            type: "boolean",
+            description: "Only save videos when tests fail (default: false)"
+          },
+          quality: {
+            type: "number",
+            description: "Video quality 0-100 (default: 100)"
+          },
+          fps: {
+            type: "number",
+            description: "Frames per second 1-60 (default: 30)"
+          }
+        },
+        required: []
+      }
+    },
+    {
+      name: "playwright_get_video_status",
+      description: "Get current video recording status including duration and annotation count",
+      inputSchema: {
+        type: "object",
+        properties: {},
+        required: []
+      }
+    },
   ] as const satisfies Tool[];
 }
 
@@ -1631,7 +1737,13 @@ export const BROWSER_TOOLS = [
   "playwright_assert_text_content",
   "playwright_assert_attribute",
   "playwright_assert_css_property",
-  "playwright_assert_request_made"
+  "playwright_assert_request_made",
+  // Video recording tools
+  "playwright_start_video_recording",
+  "playwright_stop_video_recording",
+  "playwright_add_video_annotation",
+  "playwright_configure_video_settings",
+  "playwright_get_video_status"
 ];
 
 // API Request tools for conditional launch
@@ -1726,6 +1838,15 @@ export const ASSERTION_TOOLS = [
   'playwright_assert_request_made'
 ];
 
+// Video recording tools
+export const VIDEO_RECORDING_TOOLS = [
+  'playwright_start_video_recording',
+  'playwright_stop_video_recording',
+  'playwright_add_video_annotation',
+  'playwright_configure_video_settings',
+  'playwright_get_video_status'
+];
+
 // All available tools
 export const tools = [
   ...BROWSER_TOOLS,
@@ -1739,5 +1860,6 @@ export const tools = [
   ...VISUAL_AI_TOOLS,
   ...RESOURCE_MANAGEMENT_TOOLS,
   ...PDF_TESTING_TOOLS,
-  ...ASSERTION_TOOLS
+  ...ASSERTION_TOOLS,
+  ...VIDEO_RECORDING_TOOLS
 ];

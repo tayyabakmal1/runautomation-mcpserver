@@ -17,4 +17,5 @@ export * from './visualTesting.js';
 export * from './crossBrowser.js';
 export * from './locatorCollector.js';
 export * from './pdf.js';
-export * from './assertions.js'; 
+export * from './assertions.js';
+export * from './videoRecording.js'; 
