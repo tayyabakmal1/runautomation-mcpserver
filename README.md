@@ -431,6 +431,7 @@ SESSION_TIMEOUT=3600000      # milliseconds
 // 1. start_codegen_session with outputPath: "./tests", language: "typescript"
 // 2. [Perform various browser actions]
 // 3. end_codegen_session with sessionId: "session-id"
+//4. Get the code file 
 ```
 
 ## Author
