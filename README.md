@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/tayyabakmal1-runautomation-mcpserver-badge.png)](https://mseep.ai/app/tayyabakmal1-runautomation-mcpserver)
+
 # RunAutomation MCP Server
 
 A comprehensive Model Context Protocol (MCP) server for Playwright automation, providing 100+ tools for web testing, browser automation, and quality assurance tasks.
